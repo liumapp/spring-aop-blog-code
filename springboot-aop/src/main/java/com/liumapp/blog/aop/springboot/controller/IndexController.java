@@ -16,6 +16,7 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index () {
+        System.out.println("controller ready to return msg . ");
         return "success";
     }
 
