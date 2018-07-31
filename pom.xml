@@ -23,6 +23,7 @@
 	</developers>
 	
 	<modules>
-		
-	</modules>
+    <module>springboot-aop</module>
+    <module>springmvc-aop</module>
+  </modules>
 </project>
