@@ -17,12 +17,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ServiceMonitor {
 
-    @Before("execution(* liumapp..*Service.*(..))")
+    @Before("execution(* com.liumapp..*Service.*(..))")
     public void logServiceBegin (JoinPoint joinPoint) {
         System.out.println("begin: " + joinPoint);
     }
 
-    @AfterReturning("execution(* liumapp..*Service.*(..))")
+    @AfterReturning("execution(* com.liumapp..*Service.*(..))")
     public void logServiceResult(JoinPoint joinPoint) {
         System.out.println("Completed: " + joinPoint);
     }

@@ -1,6 +1,10 @@
 package com.liumapp.blog.aop.springboot;
 
+import com.liumapp.blog.aop.springboot.service.HelloWorldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -11,14 +15,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2018/7/31
  */
 @SpringBootApplication
-public class SpringBootAopConsoleMain {
+public class SpringBootAopConsoleMain implements CommandLineRunner {
 
-    @Value("${custom.name:World}")
-    private String name;
+    @Autowired
+    private HelloWorldService helloWorldService;
 
-    public String getHelloMessage() {
-        return "Hello " + this.name;
+    @Override
+    public void run(String... args) {
+        System.out.println(this.helloWorldService.getHelloMessage());
     }
 
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootAopConsoleMain.class, args);
+    }
 
 }

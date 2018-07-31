@@ -1,5 +1,6 @@
 package com.liumapp.blog.aop.springboot.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloWorldService {
 
+    @Value("${custom.name:World}")
+    private String name;
 
+    public String getHelloMessage() {
+        System.out.println("ready to say hello to someone");
+        return "Hello " + this.name;
+    }
 
 }
