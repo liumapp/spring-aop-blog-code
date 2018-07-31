@@ -2,7 +2,6 @@ package com.liumapp.blog.aop.springboot;
 
 import com.liumapp.blog.aop.springboot.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
