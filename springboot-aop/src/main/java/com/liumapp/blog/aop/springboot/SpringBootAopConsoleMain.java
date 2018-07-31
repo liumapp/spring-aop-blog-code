@@ -1,5 +1,6 @@
 package com.liumapp.blog.aop.springboot;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -12,7 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootAopConsoleMain {
 
+    @Value("${custom.name:World}")
+    private String name;
 
+    public String getHelloMessage() {
+        return "Hello " + this.name;
+    }
 
 
 }
