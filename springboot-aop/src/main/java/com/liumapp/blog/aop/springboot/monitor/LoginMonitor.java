@@ -52,6 +52,7 @@ public class LoginMonitor {
                 //System.out.println(isLogin(request));
                 //判断用户是否登录
                 if(!isLogin(request)){
+                    result = 
                     //JsonResult与ResultCode是我自己封装的返回类及enum类
 //                    result =
 //                    result = new JsonResult(ResultCode.NOT_LOGIN, "没有登录", null);
