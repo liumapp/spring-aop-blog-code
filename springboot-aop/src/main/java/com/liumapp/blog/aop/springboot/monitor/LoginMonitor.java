@@ -53,7 +53,8 @@ public class LoginMonitor {
                 //判断用户是否登录
                 if(!isLogin(request)){
                     //JsonResult与ResultCode是我自己封装的返回类及enum类
-                    result = new JsonResult(ResultCode.NOT_LOGIN, "没有登录", null);
+//                    result =
+//                    result = new JsonResult(ResultCode.NOT_LOGIN, "没有登录", null);
                 }
             }
         }
