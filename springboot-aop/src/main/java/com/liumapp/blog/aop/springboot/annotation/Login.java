@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 public @interface Login {
 
     /**
-     * 是否已登录
+     * is logined
      * @return
      */
     boolean isLogin() default true;

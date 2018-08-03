@@ -1,10 +1,14 @@
 package com.liumapp.blog.aop.springboot.monitor;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 
 /**
  * @author liumapp
@@ -18,9 +22,9 @@ import javax.annotation.Resource;
 public class LoginMonitor {
 
     /**
-     * 定义拦截规则：拦截标有com.christ.annotation.Login类中注解的所有方法
+     * 定义拦截规则：拦截标有com.liumapp.blog.aop.springboot.annotation.Login注解的所有方法
      */
-    @Pointcut("@annotation(com.liumapp.blog.aop.springboot.controller)")
+    @Pointcut("@annotation(com.liumapp.blog.aop.springboot.annotation.Login)")
     public void loginMethodPointcut(){}
 
     /**
