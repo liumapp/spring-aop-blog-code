@@ -9,7 +9,6 @@ package com.liumapp.blog.aop.springboot.status;
  */
 public enum LoginStatus {
 
-//    LOGIN_STATUS =
-
+    UNLOGIN, LOGIN_SUCCESS
 
 }
