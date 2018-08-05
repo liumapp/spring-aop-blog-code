@@ -1,6 +1,7 @@
 package com.liumapp.blog.aop.springboot.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,9 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @RequestMapping("/")
-    public String index () {
-        System.out.println("controller ready to return msg . ");
-        return "success";
+    public String index (@RequestParam String name, String sex) {
+        return "success, get name is " + name + " and sex is : " + sex;
     }
 
 }

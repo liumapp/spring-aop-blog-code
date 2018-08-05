@@ -19,6 +19,7 @@ public class ControllerMonitor {
 
     @Before("execution(* com.liumapp..*Controller.*(..))")
     public void logServiceBegin (JoinPoint joinPoint) {
+        Object[] args = joinPoint.getArgs();
         System.out.println("Controller begin: " + joinPoint);
     }
 
