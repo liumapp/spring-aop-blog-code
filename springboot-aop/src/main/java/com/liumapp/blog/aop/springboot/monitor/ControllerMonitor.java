@@ -1,5 +1,6 @@
 package com.liumapp.blog.aop.springboot.monitor;
 
+import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,10 +18,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ControllerMonitor {
 
-    @Before("execution(* com.liumapp..*Controller.*(..))")
-    public void logServiceBegin (JoinPoint joinPoint) {
+    @Before("execution(* com.liumapp..*Controller.index(..))")
+    public void allControllerMethod (JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
-        System.out.println("Controller begin: " + joinPoint);
+        args[0] += "_updated";
+        args[1] += "_updated";
+        System.out.println("Controller begin: " + JSON.toJSONString(args));
     }
 
     @AfterReturning("execution(* com.liumapp..*Controller.*(..))")

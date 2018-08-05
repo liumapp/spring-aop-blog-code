@@ -7,12 +7,12 @@ import java.lang.annotation.Target;
 
 /**
  * @author liumapp
- * @file RequireToken.java
+ * @file RequireAOP.java
  * @email liumapp.com@gmail.com
  * @homepage http://www.liumapp.com
  * @date 2018/8/5
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD})
-public @interface RequireToken {
+@Target(ElementType.METHOD)
+public @interface RequireAOP {
 }
