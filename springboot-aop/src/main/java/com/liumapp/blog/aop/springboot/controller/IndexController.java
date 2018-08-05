@@ -24,6 +24,10 @@ public class IndexController {
         return "success, get name is " + name + " and sex is : " + sex;
     }
 
+    /**
+     * no matter what values posted
+     * helloinfo's value will be updated in aop
+     */
     @RequireAOP
     @RequestMapping("/component")
     public String usingComponent (@RequestBody HelloInfo helloInfo) {
