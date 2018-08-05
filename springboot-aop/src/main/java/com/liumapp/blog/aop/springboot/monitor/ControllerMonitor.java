@@ -1,10 +1,9 @@
 package com.liumapp.blog.aop.springboot.monitor;
 
 import com.alibaba.fastjson.JSON;
+import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,9 +25,17 @@ public class ControllerMonitor {
         System.out.println("Controller begin: " + JSON.toJSONString(args));
     }
 
+    @Pointcut("@annotation(com.liumapp.blog.aop.springboot.annotation.RequireAOP)")
+    public void handleComponent () {}
+
     @AfterReturning("execution(* com.liumapp..*Controller.*(..))")
     public void logServiceResult(JoinPoint joinPoint) {
         System.out.println("Controller Completed: " + joinPoint);
+    }
+
+    @Before("handleComponent()")
+    public void handleComponentDetail (JoinPoint joinpoint) {
+
     }
 
 }
