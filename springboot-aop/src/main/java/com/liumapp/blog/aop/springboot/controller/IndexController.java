@@ -1,6 +1,7 @@
 package com.liumapp.blog.aop.springboot.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.liumapp.blog.aop.springboot.annotation.RequireAOP;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class IndexController {
         return "success, get name is " + name + " and sex is : " + sex;
     }
 
+    @RequireAOP
     @RequestMapping("/component")
     public String usingComponent (@RequestBody HelloInfo helloInfo) {
         return "success : " + JSON.toJSONString(helloInfo);

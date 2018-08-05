@@ -1,6 +1,7 @@
 package com.liumapp.blog.aop.springboot.monitor;
 
 import com.alibaba.fastjson.JSON;
+import com.liumapp.blog.aop.springboot.entity.HelloInfo;
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -35,7 +36,13 @@ public class ControllerMonitor {
 
     @Before("handleComponent()")
     public void handleComponentDetail (JoinPoint joinpoint) {
-
+        Object[] args = joinpoint.getArgs();
+        for (Object arg : args) {
+            if (arg instanceof HelloInfo) {
+                ((HelloInfo) arg).setName("lisi");
+                ((HelloInfo) arg).setSex("boy");
+            }
+        }
     }
 
 }
