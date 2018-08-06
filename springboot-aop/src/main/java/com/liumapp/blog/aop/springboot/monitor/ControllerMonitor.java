@@ -2,10 +2,16 @@ package com.liumapp.blog.aop.springboot.monitor;
 
 import com.alibaba.fastjson.JSON;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
+import com.liumapp.blog.aop.springboot.response.ResponseEntity;
+import com.liumapp.blog.aop.springboot.status.Status;
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author liumapp
@@ -39,7 +45,21 @@ public class ControllerMonitor {
 
     @Before("returnError()")
     public void returnErrorDetail (JoinPoint joinpoint) {
-        
+        Object[] args = joinpoint.getArgs();
+        for (Object arg : args) {
+            if (arg instanceof HttpServletResponse) {
+                ((HttpServletResponse) arg).setCharacterEncoding("utf-8");
+                ((HttpServletResponse) arg).setContentType("application/json; charset=utf-8");
+                try {
+                    PrintWriter out = ((HttpServletResponse) arg).getWriter();
+                    out.print(JSON.toJSONString(new ResponseEntity("error", Status.ERROR_EXCEPTION)));
+                    out.flush();
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Before("handleComponent()")

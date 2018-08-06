@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author liumapp
  * @file IndexController.java
@@ -37,7 +40,7 @@ public class IndexController {
 
     @ReturnErrorAOP
     @RequestMapping("/returnerror")
-    public String returnError (@RequestBody HelloInfo helloInfo) {
+    public String returnError (HttpServletRequest httpServletRequest, HttpServletResponse response, @RequestBody HelloInfo helloInfo) {
         return "success" + JSON.toJSONString(helloInfo);
     }
 
