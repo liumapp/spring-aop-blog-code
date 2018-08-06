@@ -6,6 +6,8 @@ import com.liumapp.blog.aop.springboot.annotation.RequireAOP;
 import com.liumapp.blog.aop.springboot.annotation.ReturnErrorAOP;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
 import com.liumapp.blog.aop.springboot.entity.HelloTokenInfo;
+import com.liumapp.blog.aop.springboot.response.ResponseEntity;
+import com.liumapp.blog.aop.springboot.status.Status;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,7 +54,7 @@ public class IndexController {
     @CheckToken
     @RequestMapping("/checktoken")
     public String checkToken (@RequestBody HelloTokenInfo helloTokenInfo) {
-        return "success" + JSON.toJSONString(helloTokenInfo);
+        return JSON.toJSONString(new ResponseEntity("success" + JSON.toJSONString(helloTokenInfo), Status.LOGIN_SUCCESS));
     }
 
 

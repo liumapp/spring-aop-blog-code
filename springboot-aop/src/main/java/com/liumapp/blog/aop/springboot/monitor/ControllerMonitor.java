@@ -70,7 +70,7 @@ public class ControllerMonitor {
         proceedingJoinPoint.proceed();
     }
 
-    @Before("checkToken()")
+    @Around("checkToken()")
     public void checkTokenDetail (ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object[] args = proceedingJoinPoint.getArgs();
         for (Object arg : args) {

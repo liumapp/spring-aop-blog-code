@@ -3,6 +3,7 @@ package com.liumapp.blog.aop.springboot;
 import com.alibaba.fastjson.JSON;
 import com.liumapp.blog.aop.springboot.controller.IndexController;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
+import com.liumapp.blog.aop.springboot.entity.HelloTokenInfo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,6 +59,20 @@ public class MockControllerTest {
                 .content(JSON.toJSONString(helloInfo))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
+        System.out.println(result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void passToken () throws Exception {
+        HelloTokenInfo helloTokenInfo = new HelloTokenInfo();
+        helloTokenInfo.setName("lisi");
+        helloTokenInfo.setSex("boy");
+        helloTokenInfo.setToken("sdfuejfiwejf");
+        MvcResult result = mockMvc.perform(post("/checktoken")
+            .accept(MediaType.APPLICATION_JSON)
+            .content(JSON.toJSONString(helloTokenInfo))
+            .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
         System.out.println(result.getResponse().getContentAsString());
     }
 
