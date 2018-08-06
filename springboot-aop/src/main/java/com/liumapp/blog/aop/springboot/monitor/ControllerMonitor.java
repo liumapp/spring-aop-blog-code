@@ -29,9 +29,17 @@ public class ControllerMonitor {
     @Pointcut("@annotation(com.liumapp.blog.aop.springboot.annotation.RequireAOP)")
     public void handleComponent () {}
 
+    @Pointcut("@annotation(com.liumapp.blog.aop.springboot.annotation.ReturnErrorAOP)")
+    public void returnError () {}
+
     @AfterReturning("execution(* com.liumapp..*Controller.*(..))")
     public void logServiceResult(JoinPoint joinPoint) {
         System.out.println("Controller Completed: " + joinPoint);
+    }
+
+    @Before("returnError()")
+    public void returnErrorDetail (JoinPoint joinpoint) {
+        
     }
 
     @Before("handleComponent()")
