@@ -2,6 +2,7 @@ package com.liumapp.blog.aop.springboot.monitor;
 
 import com.alibaba.fastjson.JSON;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
+import com.liumapp.blog.aop.springboot.entity.HelloTokenInfo;
 import com.liumapp.blog.aop.springboot.response.ResponseEntity;
 import com.liumapp.blog.aop.springboot.status.Status;
 import org.aopalliance.intercept.Joinpoint;
@@ -39,6 +40,10 @@ public class ControllerMonitor {
     @Pointcut("@annotation(com.liumapp.blog.aop.springboot.annotation.ReturnErrorAOP)")
     public void returnError () {}
 
+    @Pointcut("@annotation(com.liumapp.blog.aop.springboot.annotation.CheckToken)")
+    public void checkToken () {}
+
+
     @AfterReturning("execution(* com.liumapp..*Controller.*(..))")
     public void logServiceResult(JoinPoint joinPoint) {
         System.out.println("Controller Completed: " + joinPoint);
@@ -65,6 +70,18 @@ public class ControllerMonitor {
         proceedingJoinPoint.proceed();
     }
 
+    @Before("checkToken()")
+    public void checkTokenDetail (ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Object[] args = proceedingJoinPoint.getArgs();
+        for (Object arg : args) {
+            if (arg instanceof HelloTokenInfo) {
+                if (((HelloTokenInfo) arg).getToken() != null) {
+                    proceedingJoinPoint.proceed();
+                }
+            }
+        }
+    }
+
     @Before("handleComponent()")
     public void handleComponentDetail (JoinPoint joinpoint) {
         Object[] args = joinpoint.getArgs();
@@ -75,5 +92,4 @@ public class ControllerMonitor {
             }
         }
     }
-
 }

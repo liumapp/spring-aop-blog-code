@@ -5,6 +5,7 @@ import com.liumapp.blog.aop.springboot.annotation.CheckToken;
 import com.liumapp.blog.aop.springboot.annotation.RequireAOP;
 import com.liumapp.blog.aop.springboot.annotation.ReturnErrorAOP;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
+import com.liumapp.blog.aop.springboot.entity.HelloTokenInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,10 +46,13 @@ public class IndexController {
         return "success" + JSON.toJSONString(helloInfo);
     }
 
+    /**
+     * check token in aop monitor
+     */
     @CheckToken
     @RequestMapping("/checktoken")
-    public String checkToken () {
-
+    public String checkToken (@RequestBody HelloTokenInfo helloTokenInfo) {
+        return "success" + JSON.toJSONString(helloTokenInfo);
     }
 
 
