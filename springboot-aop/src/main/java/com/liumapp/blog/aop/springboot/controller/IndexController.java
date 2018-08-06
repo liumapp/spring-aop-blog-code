@@ -36,7 +36,7 @@ public class IndexController {
     }
 
     @ReturnErrorAOP
-    @RequestMapping("/error")
+    @RequestMapping("/returnerror")
     public String returnError (@RequestBody HelloInfo helloInfo) {
         return "success" + JSON.toJSONString(helloInfo);
     }
