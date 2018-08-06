@@ -53,7 +53,7 @@ public class IndexController {
      */
     @CheckToken
     @RequestMapping("/checktoken")
-    public String checkToken (@RequestBody HelloTokenInfo helloTokenInfo) {
+    public String checkToken (HttpServletResponse httpServletResponse, @RequestBody HelloTokenInfo helloTokenInfo) {
         return JSON.toJSONString(new ResponseEntity("success" + JSON.toJSONString(helloTokenInfo), Status.LOGIN_SUCCESS));
     }
 

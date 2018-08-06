@@ -67,7 +67,7 @@ public class MockControllerTest {
         HelloTokenInfo helloTokenInfo = new HelloTokenInfo();
         helloTokenInfo.setName("lisi");
         helloTokenInfo.setSex("boy");
-//        helloTokenInfo.setToken("sdfuejfiwejf");
+        helloTokenInfo.setToken("sdfuejfiwejf");
         MvcResult result = mockMvc.perform(post("/checktoken")
             .accept(MediaType.APPLICATION_JSON)
             .content(JSON.toJSONString(helloTokenInfo))

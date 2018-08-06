@@ -77,7 +77,18 @@ public class ControllerMonitor {
             if (arg instanceof HelloTokenInfo) {
                 if (((HelloTokenInfo) arg).getToken() != null) {
                     proceedingJoinPoint.proceed();
+                    return ;
                 }
+            }
+        }
+        for (Object arg : args) {
+            if (arg instanceof HttpServletResponse) {
+                ((HttpServletResponse) arg).setCharacterEncoding("utf-8");
+                ((HttpServletResponse) arg).setContentType("application/json; charset=utf-8");
+                PrintWriter out = ((HttpServletResponse) arg).getWriter();
+                out.print(JSON.toJSONString(new ResponseEntity("need token", Status.ERROR_EXCEPTION)));
+                out.flush();
+                out.close();
             }
         }
     }
