@@ -6,6 +6,7 @@ import com.liumapp.blog.aop.springboot.response.ResponseEntity;
 import com.liumapp.blog.aop.springboot.status.Status;
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -43,9 +44,9 @@ public class ControllerMonitor {
         System.out.println("Controller Completed: " + joinPoint);
     }
 
-    @Before("returnError()")
-    public void returnErrorDetail (JoinPoint joinpoint) {
-        Object[] args = joinpoint.getArgs();
+    @Around("returnError()")
+    public void returnErrorDetail (ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Object[] args = proceedingJoinPoint.getArgs();
         for (Object arg : args) {
             if (arg instanceof HttpServletResponse) {
                 ((HttpServletResponse) arg).setCharacterEncoding("utf-8");
@@ -55,6 +56,7 @@ public class ControllerMonitor {
                     out.print(JSON.toJSONString(new ResponseEntity("error", Status.ERROR_EXCEPTION)));
                     out.flush();
                     out.close();
+                    proceedingJoinPoint.proceed();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

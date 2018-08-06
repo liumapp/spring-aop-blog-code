@@ -58,7 +58,7 @@ public class MockControllerTest {
                 .content(JSON.toJSONString(helloInfo))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
-        System.out.println(result);
+        System.out.println(result.getResponse().getContentAsString());
     }
 
 }
