@@ -56,12 +56,13 @@ public class ControllerMonitor {
                     out.print(JSON.toJSONString(new ResponseEntity("error", Status.ERROR_EXCEPTION)));
                     out.flush();
                     out.close();
-                    proceedingJoinPoint.proceed();
+                    return ;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+        proceedingJoinPoint.proceed();
     }
 
     @Before("handleComponent()")
