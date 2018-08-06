@@ -1,6 +1,7 @@
 package com.liumapp.blog.aop.springboot.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.liumapp.blog.aop.springboot.annotation.CheckToken;
 import com.liumapp.blog.aop.springboot.annotation.RequireAOP;
 import com.liumapp.blog.aop.springboot.annotation.ReturnErrorAOP;
 import com.liumapp.blog.aop.springboot.entity.HelloInfo;
@@ -44,6 +45,12 @@ public class IndexController {
         return "success" + JSON.toJSONString(helloInfo);
     }
 
-    
+    @CheckToken
+    @RequestMapping("/checktoken")
+    public String checkToken () {
+
+    }
+
+
 
 }
